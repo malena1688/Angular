@@ -4,9 +4,12 @@
 <p>Estoy aprendiendo Angular 21.</p>
 
 <h2>Mis datos personales</h2>
-<p>Me llamo {{ nombre }}</p>
+<p>Me llamo {{ nombre2 | uppercase }}</p>
+<p>Me llamo {{ nombre22 | lowercase }}</p>
 <p>Tengo {{ edad }} años</p>
+<p>Vivo en {{ ciudad | uppercase }}</p>
 <p>El año que viene tendré {{ edad + 1 }} años</p>
+<p>La fecha es {{ fecha | date }}</p>fecha: Date = new Date(2026, 10, 4);
 
 <h2>Mi primer Property Binding</h2>
 <button [disabled]="botonDesactivado">
@@ -20,4 +23,167 @@
 
 <p>{{ mensaje }}</p>
 
-<app-footer></app-footer>
+<h2>Mi primera imagen con Property Binding</h2>
+
+<img [src]="imagen" alt="Logo de Angular" width="120">
+
+<p>Contador: {{ contador }}</p>
+
+<button (click)="sumar()">
+  Sumar 1
+</button>
+
+@if (mostrarMensaje2) {
+  <p>¡Hola! Estoy aprendiendo Angular.</p>
+}
+
+<h2>Mis frutas favoritas</h2>
+
+<ul>
+  @for (fruta of frutas; track $index) {
+    <li>{{ fruta }}</li>
+  }
+</ul>
+
+<button (click)="agregarFruta()">
+  Añadir naranja
+</button>
+<button (click)="vaciarFrutas()">
+  Vaciar frutas
+</button>
+<p>Día: {{ fecha | date:'dd' }}</p>
+<p>Mes: {{ fecha | date:'MM' }}</p>
+<p>Año: {{ fecha | date:'yyyy' }}</p>
+
+<p>Precio: {{ precio | currency:'EUR' }}</p>
+<p>Precio: {{ precio2 | currency:'USD' }}</p>
+<app-footer [company]="nombreEmpresa"></app-footer>
+<app-footer
+  [company]="nombreEmpresa"
+  (aviso)="recibirAviso()">
+
+  <h2>Mi primer servicio</h2>
+
+<p>Bienvenido, {{ usuario.nombre }}</p>
+
+<button (click)="usuario.cambiarNombre()">
+  Cambiar nombre
+</button>
+
+<p>Contador: {{ contador2() }}</p>
+
+<button (click)="sumar2()">
+  Sumar 1
+</button>
+<p>Precio: {{ precio222() }} €</p>
+<p>Cantidad: {{ cantidad() }}</p>
+<p>Total: {{ total() }} €</p>
+<router-outlet></router-outlet>
+<nav>
+  <a routerLink="/">Inicio</a>
+  <a routerLink="/contacto">Contacto</a>
+</nav>
+
+<router-outlet></router-outlet>
+
+<app-footer [company]="nombreEmpresa"></app-footer>
+<nav>
+  <a
+    routerLink="/"
+    routerLinkActive="activo"
+    [routerLinkActiveOptions]="{ exact: true }">
+    Inicio
+  </a>
+
+  <a
+    routerLink="/contacto"
+    routerLinkActive="activo">
+    Contacto
+  </a>
+</nav>
+
+<router-outlet></router-outlet>
+<h2>Mi primer formulario</h2>
+
+<input
+  type="text"
+  [(ngModel)]="nombreUsuario"
+  placeholder="Escribe tu nombre"
+>
+
+<p>Hola, {{ nombreUsuario }}</p>
+<h2>Formulario de usuario</h2>
+
+<label>Nombre:</label>
+<input type="text" [(ngModel)]="nombreUsuario">
+
+<label>Edad:</label>
+<input type="number" [(ngModel)]="edadUsuario">
+
+<p>Hola, {{ nombreUsuario }}.</p>
+<p>Tienes {{ edadUsuario }} años.</p>
+
+<button (click)="saludar()">
+  Saludar
+</button>
+
+<input
+  type="text"
+  [(ngModel)]="nombreUsuario"
+  placeholder="Escribe tu nombre"
+>
+
+<button
+  [disabled]="nombreUsuario.trim() === ''"
+  (click)="saludar()">
+  Saludar
+</button>
+
+<h2>Formulario de usuario</h2>
+
+<input
+  type="text"
+  [(ngModel)]="nombreUsuario"
+  placeholder="Escribe tu nombre"
+>
+
+@if (nombreUsuario.trim() === '') {
+  <p style="color: red;">
+    Debes escribir tu nombre.
+  </p>
+}
+
+<button
+  [disabled]="nombreUsuario.trim() === ''"
+  (click)="saludar()">
+  Saludar
+</button>
+
+<input
+  type="text"
+  [(ngModel)]="nombreUsuario"
+  placeholder="Escribe tu nombre"
+>
+
+@if (nombreUsuario.trim().length < 3) {
+  <p style="color: red;">
+    El nombre debe tener al menos 3 caracteres.
+  </p>
+}
+
+<button
+  [disabled]="nombreUsuario.trim().length < 3"
+  (click)="saludar()">
+  Saludar
+</button>
+
+@if (edadUsuario < 18) {
+  <p style="color: red;">
+    Debes tener al menos 18 años.
+  </p>
+}
+<button
+  [disabled]="nombreUsuario.trim().length < 3 || edadUsuario < 18">
+  Enviar
+</button>
+</app-footer>
